@@ -59,7 +59,7 @@ h2 {
     margin-top: 3rem;
 }
 
-.userScore, .pcScore {
+.userScore, .computerScore {
     position: absolute;
     top: 0;
     left: 0;
@@ -80,4 +80,19 @@ svg {
 
 .x {
     font-size: 4rem;
+}
+
+.actualChoice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.actualChoice svg {
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
