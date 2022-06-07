@@ -5,6 +5,7 @@ import { FaRegHandScissors as Scizor } from "react-icons/fa";
 import { FaHandRock as Rock2 } from "react-icons/fa";
 import { FaHandPaper as Paper2 } from "react-icons/fa";
 import { FaHandScissors as Scizor2 } from "react-icons/fa";
+import { BiscoitoDaSorte } from "./BiscoitoDaSorte/";
 import { useState, useEffect } from "react";
 
 export const Jokenpo = () => {
@@ -12,7 +13,8 @@ export const Jokenpo = () => {
   const [actualComputerChoice, setActualComputerChoice] = useState("");
   const [userScore, setUserScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
-  const [draw, setDraw] = useState(0);
+  const [userDraw, setUserDraw] = useState(0);
+  const [computerDraw, setComputerDraw] = useState(0);
   const [userWin, setUserWin] = useState(0);
   const [computerWin, setComputerWin] = useState(0);
   const [userLose, setUserLose] = useState(0);
@@ -35,8 +37,9 @@ export const Jokenpo = () => {
 
   const verifyChoices = (option) => {
     if (option === "userRock" && actualComputerChoice === "computerRock") {
-      setDraw(draw + 1);
-      console.log("Empate!", draw);
+      setUserDraw(userDraw + 1);
+      setComputerDraw(userDraw + 1);
+      console.log("Empate!");
     }
     if (option === "userRock" && actualComputerChoice === "computerPaper") {
       setComputerScore(computerScore + 1);
@@ -51,8 +54,9 @@ export const Jokenpo = () => {
       console.log("Você venceu!", userScore);
     }
     if (option === "userPaper" && actualComputerChoice === "computerPaper") {
-      setDraw(draw + 1);
-      console.log("Empate:", draw);
+      setUserDraw(userDraw + 1);
+      setComputerDraw(userDraw + 1);
+      console.log("Empate:");
     }
     if (option === "userPaper" && actualComputerChoice === "computerScizor") {
       setComputerScore(computerScore + 1);
@@ -67,8 +71,9 @@ export const Jokenpo = () => {
       console.log("Você venceu!", userScore);
     }
     if (option === "userScizor" && actualComputerChoice === "computerScizor") {
-      setDraw(draw + 1);
-      console.log("Empate:", draw);
+      setUserDraw(userDraw + 1);
+      setComputerDraw(userDraw + 1);
+      console.log("Empate:");
     }
     if (option === "userScizor" && actualComputerChoice === "computerRock") {
       setComputerScore(computerScore + 1);
@@ -89,16 +94,21 @@ export const Jokenpo = () => {
     setActualComputerChoice(
       computerChoices[Math.floor(Math.random() * computerChoices.length)]
     );
-    setUserWin(0);
-    setUserLose(0);
-    setComputerWin(0);
-    setComputerLose(0);
-    setDraw(0);
   };
 
   return (
-    <>      
-    {actualUserChoice !== undefined ? <h2 style={{ paddingBottom: "80px" }}>Jokenpô</h2> : <h2 style={{ marginBottom: "-50px" }}>Jokenpô</h2>}
+    <>
+      <h2>Jo.Ken.Pô</h2>
+      {userWin === 1 ? (
+        <p style={{ fontSize: "1.25rem" }}>
+          Desafio completo! Abra seu biscoito da sorte.
+        </p>
+      ) : (
+        <p style={{ fontSize: "1.25rem" }}>
+          Complete o desafio! Marque 10 pontos e receba um biscoito da sorte.
+        </p>
+      )}
+      {userWin === 1 ? <BiscoitoDaSorte /> : null}
       <div className="container">
         <div className="userSide">
           <div className="userSideInformation">
@@ -133,7 +143,7 @@ export const Jokenpo = () => {
                 <h3>Sua Pontuação</h3>
                 <div className="userPlacar">
                   <p>Vit: {userWin}</p>
-                  <p>Emp: {draw}</p>
+                  <p>Emp: {userDraw}</p>
                   <p>Der: {userLose}</p>
                 </div>
               </div>
@@ -149,22 +159,73 @@ export const Jokenpo = () => {
             </div>
           </div>
           <div>
-            {userWin ? (
-              <div className="userWin">
-                <p>Você ganhou!</p>
-                <button onClick={resetChoices}>Faça mais pontos</button>
-              </div>
-            ) : null}
-            {!userWin && !userLose && draw !== 0 ? (
+            {actualUserChoice === "userRock" &&
+            actualComputerChoice === "computerRock" ? (
               <div className="userDraw">
                 <p>Você empatou!</p>
-                <button onClick={resetChoices}>Faça mais pontos</button>
+                <button onClick={resetChoices}>Bora tentar novamete</button>
               </div>
             ) : null}
-            {userLose ? (
+            {actualUserChoice === "userRock" &&
+            actualComputerChoice === "computerPaper" ? (
               <div className="userLose">
                 <p>Você perdeu!</p>
-                <button onClick={resetChoices}>Faça mais pontos</button>
+                <button onClick={resetChoices}>
+                  Que azar. tente novamente
+                </button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userRock" &&
+            actualComputerChoice === "computerScizor" ? (
+              <div className="userWin">
+                <p>Você ganhou!</p>
+                <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userPaper" &&
+            actualComputerChoice === "computerRock" ? (
+              <div className="userWin">
+                <p>Você ganhou!</p>
+                <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userPaper" &&
+            actualComputerChoice === "computerPaper" ? (
+              <div className="userDraw">
+                <p>Você empatou!</p>
+                <button onClick={resetChoices}>Bora tentar novamete</button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userPaper" &&
+            actualComputerChoice === "computerScizor" ? (
+              <div className="userLose">
+                <p>Você perdeu!</p>
+                <button onClick={resetChoices}>
+                  Que azar. tente novamente
+                </button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userScizor" &&
+            actualComputerChoice === "computerScizor" ? (
+              <div className="userDraw">
+                <p>Você empatou!</p>
+                <button onClick={resetChoices}>Bora tentar novamete</button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userScizor" &&
+            actualComputerChoice === "computerRock" ? (
+              <div className="userLose">
+                <p>Você perdeu!</p>
+                <button onClick={resetChoices}>
+                  Que azar. tente novamente
+                </button>
+              </div>
+            ) : null}
+            {actualUserChoice === "userScizor" &&
+            actualComputerChoice === "computerPaper" ? (
+              <div className="userWin">
+                <p>Você ganhou!</p>
+                <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
               </div>
             ) : null}
           </div>
@@ -202,7 +263,7 @@ export const Jokenpo = () => {
                 <h3>Pontuação do PC</h3>
                 <div className="computerPlacar">
                   <p>Vit: {computerWin}</p>
-                  <p>Emp: {draw}</p>
+                  <p>Emp: {computerDraw}</p>
                   <p>Der: {computerLose}</p>
                 </div>
               </div>
@@ -223,22 +284,67 @@ export const Jokenpo = () => {
               ) : null}
             </div>
           </div>
-          {computerWin ? (
-            <div className="userWin">
-              <p>Você ganhou!</p>
-              <button not-allowed>Faça mais pontos</button>
-            </div>
-          ) : null}
-          {draw !== 0 ? (
-            <div className="userDraw">
+          {actualComputerChoice === "computerRock" &&
+          actualUserChoice === "userRock" ? (
+            <div className="computerDraw">
               <p>Você empatou!</p>
-              <button not-allowed>Faça mais pontos</button>
+              <button onClick={resetChoices}>Bora tentar novamente</button>
             </div>
           ) : null}
-          {computerLose ? (
-            <div className="userLose">
+          {actualComputerChoice === "computerRock" &&
+          actualUserChoice === "userPaper" ? (
+            <div className="computerLose">
               <p>Você perdeu!</p>
-              <button not-allowed>Faça mais pontos</button>
+              <button onClick={resetChoices}>Que azar. tente novamente</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerRock" &&
+          actualUserChoice === "userScizor" ? (
+            <div className="computerWin">
+              <p>Você ganhou!</p>
+              <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerPaper" &&
+          actualUserChoice === "userRock" ? (
+            <div className="computerWin">
+              <p>Você ganhou!</p>
+              <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerPaper" &&
+          actualUserChoice === "userPaper" ? (
+            <div className="computerDraw">
+              <p>Você empatou!</p>
+              <button onClick={resetChoices}>Bora tentar novamete</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerPaper" &&
+          actualUserChoice === "userScizor" ? (
+            <div className="computerLose">
+              <p>Você perdeu!</p>
+              <button onClick={resetChoices}>Que azar. tente novamente</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerScizor" &&
+          actualUserChoice === "userScizor" ? (
+            <div className="computerDraw">
+              <p>Você empatou!</p>
+              <button onClick={resetChoices}>Bora tentar novamete</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerScizor" &&
+          actualUserChoice === "userRock" ? (
+            <div className="computerLose">
+              <p>Você perdeu!</p>
+              <button onClick={resetChoices}>Que azar. tente novamente</button>
+            </div>
+          ) : null}
+          {actualComputerChoice === "computerScizor" &&
+          actualUserChoice === "userPaper" ? (
+            <div className="computerWin">
+              <p>Você ganhou!</p>
+              <button onClick={resetChoices}>Parabéns! Você é o bixão</button>
             </div>
           ) : null}
         </div>
