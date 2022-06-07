@@ -42,9 +42,10 @@ h2 {
     justify-content: flex-start;
     background-color: aliceblue;
     width: 25vw;
-    height: 50vh;
+    max-height: 70vh;
     position: relative;
     border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .userChoices, .computerChoices {
@@ -56,7 +57,7 @@ h2 {
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 5rem;
 }
 
 .userScore, .computerScore {
@@ -66,8 +67,7 @@ h2 {
     background-color:lightslategrey;
     width: 100%;
     display: flex;
-    justify-content: center;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     color: white;
     text-transform: uppercase;
     border-radius: 5px 5px 0 0;
@@ -80,6 +80,7 @@ svg {
 
 .x {
     font-size: 4rem;
+    font-weight: bold;
 }
 
 .actualChoice {
@@ -95,4 +96,53 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.buttonIcons {
+    cursor:not-allowed;
+}
+
+.userWin p, .userLose p, .userDraw p {
+    font-weight: bold;
+    text-transform: uppercase;
+    color:steelblue;
+    padding: 0.75rem 0;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.userLose p {
+    color: crimson;
+}
+
+.userDraw p {
+    color: goldenrod;
+}
+
+.userWin button, .userLose button, .userDraw button {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color:steelblue;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.userLose button {
+    background-color: crimson;
+    color: white;
+} 
+
+.userDraw button {
+    background-color: goldenrod;
+}
+
+.userPlacar, .computerPlacar {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 0.5rem;
 }
