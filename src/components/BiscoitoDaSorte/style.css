@@ -1,0 +1,18 @@
+img {
+    display: block;
+    width: 7rem;
+    transform: scale(1);
+    transition: 0.5s;
+    margin: 2rem auto;
+}
+
+img:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.textSort {
+    max-width: 35ch;
+    font-size: 1.5rem;
+    text-align: center;
+}

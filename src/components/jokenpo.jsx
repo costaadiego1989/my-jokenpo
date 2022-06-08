@@ -98,7 +98,7 @@ export const Jokenpo = () => {
 
   return (
     <>
-      <h2>Jo.Ken.Pô</h2>
+      <h2 style={{ marginTop: "-100px" }}>Jo.Ken.Pô</h2>
       {userWin === 1 ? (
         <p style={{ fontSize: "1.25rem" }}>
           Desafio completo! Abra seu biscoito da sorte.
@@ -108,7 +108,8 @@ export const Jokenpo = () => {
           Complete o desafio! Marque 10 pontos e receba um biscoito da sorte.
         </p>
       )}
-      {userWin === 1 ? <BiscoitoDaSorte /> : null}
+      {userWin === 1 ? <BiscoitoDaSorte userWin={userWin} /> : null}
+      {userWin !== 1 ?
       <div className="container">
         <div className="userSide">
           <div className="userSideInformation">
@@ -348,7 +349,7 @@ export const Jokenpo = () => {
             </div>
           ) : null}
         </div>
-      </div>
+      </div> : null}
     </>
   );
 };
