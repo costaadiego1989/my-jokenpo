@@ -100,18 +100,18 @@ export const Jokenpo = () => {
     <>
       <div style={{ marginTop: "-100px" }}>
         <h2 style={{ textAlign: "center" }}>Jo.Ken.Pô</h2>
-        {userWin === 1 ? (
+        {userWin === 5 ? (
           <p style={{ fontSize: "1.25rem" }}>
             Desafio completo! Abra seu biscoito da sorte.
           </p>
         ) : (
           <p style={{ fontSize: "1.25rem", marginBottom: "90px" }}>
-            Complete o desafio! Marque 10 pontos e receba um biscoito da sorte.
+            Complete o desafio! Marque 5 pontos e receba um biscoito da sorte.
           </p>
         )}
       </div>
-      {userWin === 1 ? <BiscoitoDaSorte userWin={userWin} /> : null}
-      {userWin !== 1 ? (
+      {userWin === 5 ? <BiscoitoDaSorte userWin={userWin} /> : null}
+      {userWin !== 5 ? (
         <div className="container">
           <div className="userSide">
             <div className="userSideInformation">
